@@ -22,7 +22,7 @@ public class Timer {
     }
 
     public Long getTimer(){
-        return TimeUnit.MINUTES.toMillis(1);
+        return TimeUnit.SECONDS.toMillis(5);
     }
 
     public synchronized void start(final TimeOutListener listener) {

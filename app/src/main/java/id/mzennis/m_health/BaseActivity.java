@@ -3,15 +3,108 @@ package id.mzennis.m_health;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+
+import id.mzennis.m_health.animation.Timer;
 
 /**
  * Created by meta on 10/05/18.
  */
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity  implements GestureDetector.OnGestureListener,
+        GestureDetector.OnDoubleTapListener {
+
+    private Timer timer;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onStart() {
+        super.onStart();
+        timer = new Timer(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startTimer();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        timer.stopTimer();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        timer.stopTimer();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        timer.stopTimer();
+    }
+
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent e) {
+        startTimer();
+        return true;
+    }
+
+    @Override
+    public boolean onDoubleTap(MotionEvent e) {
+        startTimer();
+        return true;
+    }
+
+    @Override
+    public boolean onDoubleTapEvent(MotionEvent e) {
+        startTimer();
+        return true;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+        startTimer();
+        return true;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+        startTimer();
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        startTimer();
+        return true;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        startTimer();
+        return true;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+        startTimer();
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        startTimer();
+        return true;
+    }
+
+    public void startTimer() {
+        timer.start(new Timer.TimeOutListener() {
+            @Override
+            public void timeOut() {
+                AnimationActivity.start(BaseActivity.this);
+            }
+        });
     }
 }

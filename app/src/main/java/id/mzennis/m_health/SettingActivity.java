@@ -24,6 +24,8 @@ public class SettingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
 
+        setTitle("Setting");
+
         Button btnSetting = findViewById(R.id.btn_alarm);
         btnSetting.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -19,6 +19,8 @@
 
         <activity android:name=".SettingActivity"/>
         <activity android:name=".AlarmSettingActivity"/>
+        <activity android:name=".AnimationActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>
 
