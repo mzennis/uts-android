@@ -1,5 +1,6 @@
 package id.mzennis.m_health;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,7 +9,9 @@ import android.hardware.Camera;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.Switch;
@@ -17,7 +20,7 @@ import android.widget.Switch;
  * Created by meta on 10/05/18.
  */
 
-public class AlarmSettingActivity extends BaseActivity {
+public class AlarmSettingActivity extends AppCompatActivity {
 
     public static void start(Context context) {
         Intent intent = new Intent(context, AlarmSettingActivity.class);
@@ -70,6 +73,10 @@ public class AlarmSettingActivity extends BaseActivity {
 	 * Get the camera
 	 */
     private void getCamera() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.CAMERA},
+                1);
+
         if (camera == null) {
             try {
                 camera = Camera.open();
@@ -143,7 +150,22 @@ public class AlarmSettingActivity extends BaseActivity {
             camera.startPreview();
             isFlashOn = true;
         }
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (isHasFlash())
+            turnOnFlash();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // on starting the app get the camera params
+        getCamera();
     }
 
     @Override
