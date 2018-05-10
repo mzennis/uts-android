@@ -41,4 +41,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <Switch
+        android:padding="8dp"
+        android:id="@+id/switch_e"
+        android:text="Torch"
+        android:checked="false"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>
