@@ -39,7 +39,7 @@ public class AlarmSettingActivity extends BaseActivity {
         torch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isHasFlash()) {
-                    if (!isChecked) {
+                    if (isChecked) {
                         turnOnFlash();
                     } else {
                         turnOffFlash();
